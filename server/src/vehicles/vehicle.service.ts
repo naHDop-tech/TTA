@@ -53,4 +53,13 @@ export class VehicleService {
         return this.vehicleRepository.remove(vehicle);
     }
 
+    async findAll(take: number = 10, skip: number = 0): Promise<Vehicle[]> {
+        return await this.vehicleRepository.find(
+            {
+                take: take,
+                skip: skip
+            }
+        );
+    }
+
 }
