@@ -12,6 +12,10 @@
     "baseUrl": "./src",
     "paths": {
       "@root/*": ["./*"],
+      "@abstractions/*": ["./abstractions/*"],
+      "@constants/*": ["./constants/*"],
+      "@models/*": ["./models/*"],
+      "@entities/*": ["./entities/*"],
     },
     "incremental": true,
     "skipLibCheck": true,
