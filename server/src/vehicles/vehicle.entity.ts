@@ -23,6 +23,9 @@ export class Vehicle extends AbstractVehicle {
     price: number;
 
     @Column()
+    currency: string
+
+    @Column()
     year: Date;
 
     @Column()
@@ -34,9 +37,9 @@ export class Vehicle extends AbstractVehicle {
     @Column()
     countryNumber: string
 
-    @Column()
+    @Column({ default: 0 })
     repairCondition: number
 
-    @Column()
+    @Column({ default: false })
     isChecked: boolean
 }

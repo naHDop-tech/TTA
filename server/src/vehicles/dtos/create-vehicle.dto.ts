@@ -1,4 +1,4 @@
-import { IsString, MinLength, MaxLength, IsEmail, IsNumber, IsDate } from 'class-validator';
+import { IsString, MinLength, MaxLength, IsEmail, IsNumber, IsDate, isString } from 'class-validator';
 
 import { VehicleTypes } from '@constants/vehicle.constant'
 
@@ -11,6 +11,9 @@ export class CreateVehicleDto {
 
     @IsNumber()
     price: number;
+
+    @IsString()
+    currency: string;
 
     @IsDate()
     year: Date;

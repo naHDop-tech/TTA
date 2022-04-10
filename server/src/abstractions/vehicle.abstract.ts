@@ -7,6 +7,7 @@ export abstract class Vehicle {
     readonly id: number
     readonly model: string
     readonly price: number
+    readonly currency: string
     readonly year: Date
 
     countryNumber: string

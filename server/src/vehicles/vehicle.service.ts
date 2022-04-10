@@ -18,8 +18,8 @@ export class VehicleService {
     async create(vehicle: CreateVehicleDto): Promise<Vehicle> {
         const applicant = await this.vehicleRepository.findOne({ where: { countryNumber: vehicle.countryNumber }})
 
-        if (applicant.countryNumber === vehicle.countryNumber) {
-            throw new ConflictException('User already exist');
+        if (applicant?.countryNumber === vehicle.countryNumber) {
+            throw new ConflictException('Vehicle already exist');
         }
 
         const newVehicle = this.vehicleRepository.create(vehicle);
