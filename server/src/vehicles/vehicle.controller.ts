@@ -30,6 +30,7 @@ export class VehicleController {
     }
 
     @Get('/:id')
+    @UseInterceptors(ClassSerializerInterceptor)
     getVehicle(@Param('id') id: number) {
         return this.vehicleService.findById(id)
     }

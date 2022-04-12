@@ -4,7 +4,6 @@ import { Expose } from 'class-transformer';
 
 export abstract class Vehicle {
     readonly type: VehicleTypes
-
     readonly id: number
     readonly model: string
     readonly price: number
