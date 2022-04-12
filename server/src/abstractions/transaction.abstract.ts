@@ -6,4 +6,9 @@ export abstract class Transaction {
     date: Date
     amount: number
     status: TransactionStatuses
+    // need to implement
+    fromBankAccount: any
+    toBankAccount: any
+
+    makeTransaction: void
 }
