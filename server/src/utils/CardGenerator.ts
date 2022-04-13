@@ -8,6 +8,14 @@ import {
 } from './card-prefixes'
 import { VISA, MC, MAESTRO, AMEX, JCB, DISCOVER, UNION_PAY, CardTypes, CardPaymentSystems } from '@constants/card.constant'
 
+export interface ICard {
+    type: CardTypes
+    paymentSystem: CardPaymentSystems
+    number: string
+    cvv: number
+    expDate: Date
+}
+
 export class CardGenerator {
     private readonly visaPrefixList = visaPrefixList
     private readonly mastercardPrefixList = mastercardPrefixList
@@ -26,12 +34,12 @@ export class CardGenerator {
         [UNION_PAY]: this.unionPayPrefixList,
     }
 
-    reverseString(str) {
+    reverseString(str): string {
         if (!str) return '';
         return str.split("").reverse().join("");
      }
 
-    private completedNumber(prefix, length) {
+    private completedNumber(prefix, length): string {
         let ccNumber = prefix;
 
         while ( ccNumber.length < (length - 1) ) {
@@ -68,7 +76,7 @@ export class CardGenerator {
         return ccNumber;
     }
 
-    getCreditCardNumber(prefixList) {
+    getCreditCardNumber(prefixList): string {
         // const length = Math.floor(Math.random() * (16 - 13 + 1)) + 13;
         const length = 16;
         const randomArrayIndex = Math.floor(Math.random() * prefixList.length);
@@ -77,16 +85,16 @@ export class CardGenerator {
         return this.completedNumber(ccNumber, length)
     }
 
-    getExpireDate() {
+    getExpireDate(): Date {
         const now = new Date();
-        return now.setDate(now.getDate() + 24 * 14);
+        return new Date(now.setDate(now.getDate() + 78 * 14));
     }
 
-    getCvvNumber() {
+    getCvvNumber(): number {
         return Math.floor(Math.random() * (999 - 100 + 1)) + 100;
     }
 
-    generateCard(type: CardTypes, paymentSystem: CardPaymentSystems) {
+    generateCard(type: CardTypes, paymentSystem: CardPaymentSystems): ICard {
         const number = this.getCreditCardNumber(this.ccCardMap[paymentSystem])
         const cvv = this.getCvvNumber()
         const expDate = this.getExpireDate()
