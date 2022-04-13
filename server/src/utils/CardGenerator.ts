@@ -83,7 +83,7 @@ export class CardGenerator {
     }
 
     getCvvNumber() {
-        Math.floor(Math.random() * (999 - 100 + 1)) + 100;
+        return Math.floor(Math.random() * (999 - 100 + 1)) + 100;
     }
 
     generateCard(type: CardTypes, paymentSystem: CardPaymentSystems) {
