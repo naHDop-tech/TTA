@@ -14,6 +14,7 @@ export interface ICard {
     number: string
     cvv: number
     expDate: Date
+    cardHolder: string
 }
 
 export class CardGenerator {
@@ -94,7 +95,7 @@ export class CardGenerator {
         return Math.floor(Math.random() * (999 - 100 + 1)) + 100;
     }
 
-    generateCard(type: CardTypes, paymentSystem: CardPaymentSystems): ICard {
+    generateCard(type: CardTypes, paymentSystem: CardPaymentSystems, cardHolder: string): ICard {
         const number = this.getCreditCardNumber(this.ccCardMap[paymentSystem])
         const cvv = this.getCvvNumber()
         const expDate = this.getExpireDate()
@@ -104,7 +105,8 @@ export class CardGenerator {
             paymentSystem,
             number,
             cvv,
-            expDate
+            expDate,
+            cardHolder: cardHolder.toUpperCase()
         }
     }
 }

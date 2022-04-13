@@ -11,6 +11,6 @@ export class AppController {
   getCard() {
     const cardGenerator = new CardGenerator()
 
-    return cardGenerator.generateCard(CREDIT_CARD, VISA)
+    return cardGenerator.generateCard(CREDIT_CARD, VISA, 'Platonov Ivan')
   }
 }
