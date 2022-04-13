@@ -1,0 +1,15 @@
+export type CardTypes = 'debit' | 'credit' | 'prepay' | 'kid'
+export type CardPaymentSystems = 'visa' | 'mc' | 'maestro' |'amex' | 'union_pay' | 'jcb' | 'discover'
+
+export const CREDIT_CARD: CardTypes = 'credit'
+export const DEBIT_CARD: CardTypes = 'debit'
+export const PREPAY_CARD: CardTypes = 'prepay'
+export const KID_CARD: CardTypes = 'kid'
+
+export const VISA: CardPaymentSystems = 'visa'
+export const MC: CardPaymentSystems = 'mc'
+export const MAESTRO: CardPaymentSystems = 'maestro'
+export const AMEX: CardPaymentSystems = 'amex'
+export const UNION_PAY: CardPaymentSystems = 'union_pay'
+export const JCB: CardPaymentSystems = 'jcb'
+export const DISCOVER: CardPaymentSystems = 'discover'
