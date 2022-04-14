@@ -1,0 +1,10 @@
+export type CurrencyTypes = 'USD' | 'EUR' | 'CAD' | 'CNY' | 'JPY' | 'RUB' | 'AUD' | 'BRL'
+
+export const USD: CurrencyTypes = 'USD'
+export const EUR: CurrencyTypes = 'EUR'
+export const CAD: CurrencyTypes = 'CAD'
+export const CNY: CurrencyTypes = 'CNY'
+export const JPY: CurrencyTypes = 'JPY'
+export const RUB: CurrencyTypes = 'RUB'
+export const AUD: CurrencyTypes = 'AUD'
+export const BRL: CurrencyTypes = 'BRL'
