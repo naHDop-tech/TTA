@@ -58,7 +58,8 @@ export class CardGenerator {
         let pos = 0;
 
         while ( pos < length - 1 ) {
-            let odd = reversedCCnumber[ pos ] * 2;
+            let odd = reversedCCnumber[pos] * 2;
+
             if ( odd > 9 ) {
                 odd -= 9;
             }
@@ -66,8 +67,9 @@ export class CardGenerator {
             sum += odd;
 
             if ( pos != (length - 2) ) {
-                sum += reversedCCnumber[ pos +1 ];
+                sum += reversedCCnumber[pos + 1];
             }
+
             pos += 2;
         }
 

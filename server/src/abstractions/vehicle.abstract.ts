@@ -3,8 +3,8 @@ import { RepairCost } from '@root/utils/RepairCost'
 import { Expose } from 'class-transformer';
 
 export abstract class Vehicle {
-    readonly type: VehicleTypes
     readonly id: number
+    readonly type: VehicleTypes
     readonly model: string
     readonly price: number
     readonly currency: string

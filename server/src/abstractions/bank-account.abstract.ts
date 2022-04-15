@@ -8,7 +8,6 @@ export abstract class BankAccount {
     cards: Card[]
     currency: CurrencyTypes
 
-
     addCard(card: Card): void {
         this.cards.push(card)
     }
