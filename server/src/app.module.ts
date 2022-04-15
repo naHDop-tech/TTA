@@ -2,8 +2,10 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-import { Vehicle } from '@root/vehicles/vehicle.entity'
-import { VehicleModule } from '@root/vehicles/vehicle.module'
+import { Vehicle } from '@root/vehicle/vehicle.entity'
+import { Card } from '@root/card/card.entity'
+import { VehicleModule } from '@root/vehicle/vehicle.module'
+import { CardModule } from '@root/card/card.module'
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -19,12 +21,13 @@ import { AppService } from './app.service';
         return {
           type: 'sqlite',
           database: config.get<string>('DB_NAME'),
-          entities: [Vehicle],
+          entities: [Vehicle, Card],
           synchronize: true,
         };
       },
     }),
-    VehicleModule
+    VehicleModule,
+    CardModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -8,7 +8,7 @@ import { VehicleTypes } from '@root/constants/vehicle.constant'
 import { Vehicle as AbstractVehicle } from '@root/abstractions/vehicle.abstract'
 
 
-@Entity()
+@Entity('vehicles')
 export class Vehicle extends AbstractVehicle {
     @PrimaryGeneratedColumn('uuid')
     id: number

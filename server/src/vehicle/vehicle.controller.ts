@@ -8,9 +8,9 @@ import {
     ClassSerializerInterceptor,
     UseInterceptors,
 } from '@nestjs/common';
-import { CreateVehicleDto } from '@root/vehicles/dtos/create-vehicle.dto';
+import { CreateVehicleDto } from '@root/vehicle/dtos/create-vehicle.dto';
 
-import { VehicleService } from '@root/vehicles/vehicle.service'
+import { VehicleService } from '@root/vehicle/vehicle.service'
 
 @Controller('/api/vehicle')
 export class VehicleController {
