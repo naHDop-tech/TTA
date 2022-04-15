@@ -12,7 +12,7 @@ export class Card extends AbstractionCard {
     @PrimaryGeneratedColumn('uuid')
     id: number
 
-    @Column({ name: 'bank_account_id'})
+    @Column({ name: 'bank_account_id' })
     bankAccountId: number
 
     @Column()
