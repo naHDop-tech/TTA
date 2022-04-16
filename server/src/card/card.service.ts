@@ -6,7 +6,7 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { Card } from '@root/card/card.entity'
-import { CardTypes, CardPaymentSystems } from '@constants/card.constant'
+import { CreateCardDto } from '@root/card/dtos/create-card.dto'
 import { CardGenerator } from '@root/utils/CardGenerator'
 
 @Injectable()
@@ -17,17 +17,17 @@ export class CardService {
     ) {}
 
     async create(
-        type: CardTypes,
-        paymentSystem: CardPaymentSystems,
-        cardHolder: string
+        payload: CreateCardDto
     ): Promise<Card> {
+        const { type, paymentSystem, cardHolder, bankAccountId } = payload
+
         const card = this.cardGenerator.generateCard(type, paymentSystem, cardHolder)
-        return await this.cardRepository.save(card)
+        return await this.cardRepository.save({ ...card, bankAccountId })
     }
 
     async findByBankAccountId(bankAccountId: number): Promise<Card> {
         if (!bankAccountId) {
-          throw new NotFoundException('Vehicle not found');
+          throw new NotFoundException('Card not found');
         }
 
         return await this.cardRepository.findOne({ where: { bankAccountId } });

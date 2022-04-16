@@ -12,7 +12,7 @@ import { Card } from '@root/card/card.entity';
     CardService,
     CardGenerator
   ],
-  imports: [TypeOrmModule.forFeature([Card]), CardGenerator],
+  imports: [TypeOrmModule.forFeature([Card])],
 })
 
 
