@@ -34,9 +34,10 @@ export class BankAccountService {
             currency,
         } = payload
 
-        // prepare bank account
-        const account = new BankAccount()
-        account.currency = currency
+        const account = this.bankAccountRepository.create({
+            currency
+        })
+
         const savedBankAccount = await this.bankAccountRepository.save(account)
 
         // prepare user
