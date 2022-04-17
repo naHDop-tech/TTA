@@ -11,6 +11,7 @@ import { Vehicle } from '@root/vehicle/vehicle.entity';
     VehicleService,
   ],
   imports: [TypeOrmModule.forFeature([Vehicle])],
+  exports: [VehicleService]
 })
 
 

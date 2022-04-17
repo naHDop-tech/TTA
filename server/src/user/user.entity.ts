@@ -2,18 +2,23 @@ import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
+    OneToMany
 } from 'typeorm';
 
 import { User as AbstractionUser } from '@abstractions/user.abstract'
 import { UserTypes } from '@constants/user.constant'
+import { BankAccount } from '@root/bank-account/bank-account.entity'
 
 @Entity('users')
-export class User extends AbstractionUser {
+export class User {
     @PrimaryGeneratedColumn('uuid')
     id: number
 
     @Column()
-    name: string;
+    firstName: string;
+
+    @Column()
+    secondName: string;
 
     @Column()
     age: number;
@@ -23,4 +28,7 @@ export class User extends AbstractionUser {
 
     @Column()
     type: UserTypes;
+
+    @OneToMany(() => BankAccount, (account) => account.user)
+    bankAccounts: BankAccount[]
 }

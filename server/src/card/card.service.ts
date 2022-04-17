@@ -30,6 +30,6 @@ export class CardService {
           throw new NotFoundException('Card not found');
         }
 
-        return await this.cardRepository.findOne({ where: { bankAccountId } });
+        return await this.cardRepository.findOne({ where: { bankAccount: { id: bankAccountId } }, relations: ['bankAccount'] });
     }
 }

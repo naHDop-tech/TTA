@@ -8,7 +8,10 @@ export class CreateBankAccountDto {
     currency: CurrencyTypes;
 
     @IsString()
-    userName: string;
+    userFirstName: string;
+
+    @IsString()
+    userSecondName: string;
 
     @IsNumber()
     userAge: number;

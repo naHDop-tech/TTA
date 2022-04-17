@@ -4,7 +4,10 @@ import { UserTypes } from '@constants/user.constant'
 
 export class CreateUserDto {
     @IsString()
-    name: string;
+    firstName: string;
+
+    @IsString()
+    secondName: string;
 
     @IsNumber()
     age: number;

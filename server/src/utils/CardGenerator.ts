@@ -1,4 +1,8 @@
 import {
+    Injectable,
+} from '@nestjs/common';
+
+import {
     visaPrefixList,
     mastercardPrefixList,
     discoverPrefixList,
@@ -13,10 +17,11 @@ export interface ICard {
     paymentSystem: CardPaymentSystems
     number: string
     cvv: number
-    expDate: Date
+    expireDate: Date
     cardHolder: string
 }
 
+@Injectable()
 export class CardGenerator {
     private readonly visaPrefixList = visaPrefixList
     private readonly mastercardPrefixList = mastercardPrefixList
@@ -107,7 +112,7 @@ export class CardGenerator {
             paymentSystem,
             number,
             cvv,
-            expDate,
+            expireDate: expDate,
             cardHolder: cardHolder.toUpperCase()
         }
     }

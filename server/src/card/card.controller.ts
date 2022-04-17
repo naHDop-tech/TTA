@@ -14,9 +14,9 @@ export class CardController {
       private readonly cardService: CardService,
     ) {}
 
-    @Get('/:id')
+    @Get('/:bankAccountId')
     @UseInterceptors(ClassSerializerInterceptor)
-    getCardByBankAccountId(@Param('id') id: number) {
-        return this.cardService.findByBankAccountId(id)
+    getCardByBankAccountId(@Param('bankAccountId') bankAccountId: number) {
+        return this.cardService.findByBankAccountId(bankAccountId)
     }
 }

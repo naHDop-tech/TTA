@@ -22,14 +22,14 @@ export class UserService {
             throw new ConflictException('User already exist');
         }
 
-        const newVehicle = this.userRepository.create(user);
+        const newUser = this.userRepository.create(user);
 
-        return this.userRepository.save(newVehicle)
+        return this.userRepository.save(newUser)
     }
 
     async findById(id: number): Promise<User> {
         if (!id) {
-          throw new NotFoundException('Vehicle not found');
+          throw new NotFoundException('User not found');
         }
 
         return await this.userRepository.findOne({ where: { id } });

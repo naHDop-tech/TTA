@@ -3,6 +3,7 @@ import {
     Get,
     Post,
     Body,
+    Query,
     Param,
     ClassSerializerInterceptor,
     UseInterceptors,
@@ -23,9 +24,18 @@ export class BankAccountController {
         return this.bankAccountService.create(body)
     }
 
-    @Get('/add-card')
+    @Post('/add-card')
     @UseInterceptors(ClassSerializerInterceptor)
-    addCard(@Body() body: CreateCardDto) {
-        return this.bankAccountService.addCard(body)
+    addCard(
+        @Body() body: CreateCardDto,
+        @Query() query: { backAccountId: number }
+    ) {
+        return this.bankAccountService.addCard(query.backAccountId, body)
+    }
+
+    @Get('/:id')
+    @UseInterceptors(ClassSerializerInterceptor)
+    getCardByBankAccountId(@Param('id') id: number) {
+        return this.bankAccountService.findById(id)
     }
 }
