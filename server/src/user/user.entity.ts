@@ -5,12 +5,12 @@ import {
     OneToMany
 } from 'typeorm';
 
-import { User as AbstractionUser } from '@abstractions/user.abstract'
+import { IUser } from '@root/user/interfaces/user.interface'
 import { UserTypes } from '@constants/user.constant'
 import { BankAccount } from '@root/bank-account/bank-account.entity'
 
 @Entity('users')
-export class User {
+export class User implements IUser{
     @PrimaryGeneratedColumn('uuid')
     id: number
 
