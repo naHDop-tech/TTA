@@ -5,7 +5,6 @@ import { IApplication } from '@root/application/interfaces/application.interface
 import { IRoad } from '@root/road/interfaces/road.interface'
 
 export interface IBranchOffice {
-    id: number
     bankAccount: IBankAccount
     vehicles: IVehicle[]
     clients: IUser[]

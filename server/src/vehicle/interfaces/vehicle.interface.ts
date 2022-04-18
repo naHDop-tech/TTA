@@ -1,7 +1,6 @@
 import { VehicleTypes } from '@root/constants/vehicle.constant'
 
 export interface IVehicle {
-    id: number
     type: VehicleTypes
     model: string
     price: number
