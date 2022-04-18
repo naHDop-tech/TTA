@@ -10,7 +10,7 @@ import { UserTypes } from '@constants/user.constant'
 import { BankAccount } from '@root/bank-account/bank-account.entity'
 
 @Entity('users')
-export class User implements IUser{
+export class User implements IUser {
     @PrimaryGeneratedColumn('uuid')
     id: number
 
