@@ -1,5 +1,5 @@
 import { CardTypes, CardPaymentSystems } from '@constants/card.constant'
-import { BankAccount } from '@root/bank-account/bank-account.entity'
+import { IBankAccount } from '@root/bank-account/interfaces/bank-account.interface'
 
 export interface ICard {
     type: CardTypes
@@ -8,5 +8,5 @@ export interface ICard {
     cvv: number
     cardHolder: string
     expireDate: Date
-    bankAccount: BankAccount
+    bankAccount: IBankAccount
 }

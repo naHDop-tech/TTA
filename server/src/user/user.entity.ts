@@ -7,10 +7,10 @@ import {
 
 import { IUser } from '@root/user/interfaces/user.interface'
 import { UserTypes } from '@constants/user.constant'
-import { BankAccount } from '@root/bank-account/bank-account.entity'
+import { BankAccountEntity } from '@root/bank-account/bank-account.entity'
 
 @Entity('users')
-export class User implements IUser {
+export class UserEntity implements IUser {
     @PrimaryGeneratedColumn('uuid')
     id: number
 
@@ -29,6 +29,6 @@ export class User implements IUser {
     @Column()
     type: UserTypes;
 
-    @OneToMany(() => BankAccount, (account) => account.user)
-    bankAccounts: BankAccount[]
+    @OneToMany(() => BankAccountEntity, (account) => account.user)
+    bankAccounts: BankAccountEntity[]
 }

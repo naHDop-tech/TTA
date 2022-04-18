@@ -11,7 +11,7 @@ import { IVehicle } from '@root/vehicle/interfaces/vehicle.interface'
 
 
 @Entity('vehicles')
-export class Vehicle implements IVehicle {
+export class VehicleEntity implements IVehicle {
     @PrimaryGeneratedColumn('uuid')
     id: number
 

@@ -5,26 +5,26 @@ import {
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { BankAccount } from '@root/bank-account/bank-account.entity'
+import { BankAccountEntity } from '@root/bank-account/bank-account.entity'
 
 import { CreateBankAccountDto } from '@root/bank-account/dtos/create-bank-account.dto'
 import { CreateCardDto } from '@root/card/dtos/create-card.dto'
 import { CardService } from '@root/card/card.service'
 import { UserService } from '@root/user/user.service'
-import { User } from '@root/user/user.entity'
+import { UserEntity } from '@root/user/user.entity'
 
 
 @Injectable()
 export class BankAccountService {
     constructor(
-        @InjectRepository(BankAccount) private readonly bankAccountRepository: Repository<BankAccount>,
+        @InjectRepository(BankAccountEntity) private readonly bankAccountRepository: Repository<BankAccountEntity>,
         private readonly cardService: CardService,
         private readonly userService: UserService,
     ) {}
 
     async create(
         payload: CreateBankAccountDto
-    ): Promise<BankAccount> {
+    ): Promise<BankAccountEntity> {
         const {
             userAge,
             userEmail,
@@ -41,7 +41,7 @@ export class BankAccountService {
         const savedBankAccount = await this.bankAccountRepository.save(account)
 
         // prepare user
-        const user = new User()
+        const user = new UserEntity()
         user.age = userAge
         user.email = userEmail
         user.firstName = userFirstName
@@ -56,7 +56,7 @@ export class BankAccountService {
     async addCard(
         bankAccountId: number,
         payload: CreateCardDto
-    ): Promise<BankAccount> {
+    ): Promise<BankAccountEntity> {
         const { type, paymentSystem } = payload
         const bankAccount = await this.bankAccountRepository.findOne({ where: { id: bankAccountId }, relations: ['user']})
 
@@ -80,7 +80,7 @@ export class BankAccountService {
         return this.bankAccountRepository.save(bankAccount)
     }
 
-    async findById(id: number): Promise<BankAccount> {
+    async findById(id: number): Promise<BankAccountEntity> {
         if (!id) {
           throw new NotFoundException('Bank account not found');
         }
