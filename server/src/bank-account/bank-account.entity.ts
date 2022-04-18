@@ -7,22 +7,22 @@ import {
     JoinColumn,
 } from 'typeorm';
 
-import { BankAccount as AbstractionBankAccount } from '@abstractions/bank-account.abstract'
-import { Card } from '@root/card/card.entity'
-import { User } from '@root/user/user.entity'
+import { IBankAccount } from '@root/bank-account/interfaces/bank-account.interface'
+import { CardEntity } from '@root/card/card.entity'
+import { UserEntity } from '@root/user/user.entity'
 import { CurrencyTypes } from '@constants/currency.constant'
 
 @Entity({ name: 'bank_account'})
-export class BankAccount {
+export class BankAccountEntity implements IBankAccount {
     @PrimaryGeneratedColumn('uuid')
     id: number
 
-    @OneToMany (() => Card, card => card.bankAccount, { nullable: true })
-    cards: Card[]
+    @OneToMany (() => CardEntity, card => card.bankAccount, { nullable: true })
+    cards: CardEntity[]
 
     @Column()
     currency: CurrencyTypes;
 
-    @ManyToOne(() => User, (user) => user.bankAccounts)
-    user: User
+    @ManyToOne(() => UserEntity, (user) => user.bankAccounts)
+    user: UserEntity
 }

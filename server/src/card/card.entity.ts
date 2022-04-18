@@ -5,17 +5,14 @@ import {
     ManyToOne,
 } from 'typeorm';
 
-import { Card as AbstractionCard } from '@abstractions/card.abstraction'
+import { ICard } from '@root/card/interfaces/card.interface'
 import { CardTypes, CardPaymentSystems } from '@constants/card.constant'
-import { BankAccount } from '@root/bank-account/bank-account.entity'
+import { BankAccountEntity } from '@root/bank-account/bank-account.entity'
 
 @Entity({ name: 'cards'})
-export class Card extends AbstractionCard {
+export class CardEntity implements ICard {
     @PrimaryGeneratedColumn('uuid')
     id: number
-
-    // @Column({ name: 'bank_account_id', nullable: true })
-    // bankAccountId: number
 
     @Column()
     type: CardTypes
@@ -35,6 +32,6 @@ export class Card extends AbstractionCard {
     @Column({ name: 'expire_date' })
     expireDate: Date
 
-    @ManyToOne(() => BankAccount, (account) => account.cards)
-    bankAccount: BankAccount
+    @ManyToOne(() => BankAccountEntity, (account) => account.cards)
+    bankAccount: BankAccountEntity
 }

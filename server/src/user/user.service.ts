@@ -6,16 +6,16 @@ import {
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { User } from '@root/user/user.entity'
+import { UserEntity } from '@root/user/user.entity'
 import { CreateUserDto } from '@root/user/dtos/create-user.dto'
 
 @Injectable()
 export class UserService {
     constructor(
-        @InjectRepository(User) private readonly userRepository: Repository<User>,
+        @InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>,
     ) {}
 
-    async create(user: CreateUserDto): Promise<User> {
+    async create(user: CreateUserDto): Promise<UserEntity> {
         const applicant = await this.userRepository.findOne({ where: { email: user.email }})
 
         if (applicant) {
@@ -27,7 +27,7 @@ export class UserService {
         return this.userRepository.save(newUser)
     }
 
-    async findById(id: number): Promise<User> {
+    async findById(id: number): Promise<UserEntity> {
         if (!id) {
           throw new NotFoundException('User not found');
         }
@@ -36,7 +36,7 @@ export class UserService {
     }
 
 
-    async removeById(id: number): Promise<User> {
+    async removeById(id: number): Promise<UserEntity> {
         const user = await this.findById(id);
 
         if (!user) {
@@ -46,7 +46,7 @@ export class UserService {
         return this.userRepository.remove(user);
     }
 
-    async findAll(take: number = 10, skip: number = 0): Promise<User[]> {
+    async findAll(take: number = 10, skip: number = 0): Promise<UserEntity[]> {
         return await this.userRepository.find(
             {
                 take: take,

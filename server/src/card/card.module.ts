@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CardService } from '@root/card/card.service';
 import { CardGenerator } from '@root/utils/CardGenerator'
 import { CardController } from '@root/card/card.controller'
-import { Card } from '@root/card/card.entity';
+import { CardEntity } from '@root/card/card.entity';
 
 @Module({
   controllers: [CardController],
@@ -12,7 +12,7 @@ import { Card } from '@root/card/card.entity';
     CardService,
     CardGenerator
   ],
-  imports: [TypeOrmModule.forFeature([Card])],
+  imports: [TypeOrmModule.forFeature([CardEntity])],
   exports: [CardService, CardGenerator]
 })
 
