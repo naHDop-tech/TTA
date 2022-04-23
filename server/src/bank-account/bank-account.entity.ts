@@ -17,8 +17,15 @@ export class BankAccountEntity implements IBankAccount {
     @PrimaryGeneratedColumn('uuid')
     id: number
 
-    @OneToMany (() => CardEntity, card => card.bankAccount, { nullable: true })
-    cards: CardEntity[]
+    @OneToMany (
+        () => CardEntity,
+        card => card.bankAccount,
+        {
+            nullable: true,
+            cascade: ["remove"]
+        }
+    )
+    cards: Array<CardEntity>
 
     @Column()
     currency: CurrencyTypes;

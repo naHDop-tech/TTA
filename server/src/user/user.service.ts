@@ -29,7 +29,7 @@ export class UserService {
 
     async findById(id: number): Promise<UserEntity> {
         if (!id) {
-          throw new NotFoundException('User not found');
+          throw new NotFoundException('id not provided');
         }
 
         return await this.userRepository.findOne({ where: { id } });

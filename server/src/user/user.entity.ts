@@ -29,6 +29,10 @@ export class UserEntity implements IUser {
     @Column()
     type: UserTypes;
 
-    @OneToMany(() => BankAccountEntity, (account) => account.user)
-    bankAccounts: BankAccountEntity[]
+    @OneToMany(
+        () => BankAccountEntity,
+        (account) => account.user,
+        { cascade: ["remove"] }
+    )
+    bankAccounts: Array<BankAccountEntity>
 }
