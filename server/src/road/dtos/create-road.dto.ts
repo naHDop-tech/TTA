@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsEmail } from 'class-validator';
+import { IsString, IsNumber, IsOptional } from 'class-validator';
 
 import { RoadTypes, Measures } from '@constants/road-type.constant'
 
@@ -13,5 +13,6 @@ export class CreateRoadDto {
     distance: number;
 
     @IsString()
-    measure: Measures
+    @IsOptional()
+    measure?: Measures
 }

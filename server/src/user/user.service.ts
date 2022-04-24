@@ -6,6 +6,8 @@ import {
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { PropNotProvided } from '@root/decorators/props-not-provided.decorator'
+
 import { UserEntity } from '@root/user/user.entity'
 import { CreateUserDto } from '@root/user/dtos/create-user.dto'
 
@@ -27,11 +29,8 @@ export class UserService {
         return this.userRepository.save(newUser)
     }
 
+    @PropNotProvided('Id')
     async findById(id: number): Promise<UserEntity> {
-        if (!id) {
-          throw new NotFoundException('id not provided');
-        }
-
         return await this.userRepository.findOne({ where: { id } });
     }
 

@@ -31,26 +31,16 @@ export class RoadService {
 
     @PropNotProvided('Id')
     async findById(id: number): Promise<RoadEntity> {
-        if (!id) {
-          throw new NotFoundException('Id not provided');
-        }
-
         return await this.roadRepository.findOne({ where: { id } });
     }
 
+    @PropNotProvided('Name')
     async findByName(name: string): Promise<RoadEntity> {
-        if (!name) {
-          throw new NotFoundException('Name not provided');
-        }
-
         return await this.roadRepository.findOne({ where: { name } });
     }
 
+    @PropNotProvided('Id')
     async removeById(id: number): Promise<RoadEntity> {
-        if (!id) {
-            throw new NotFoundException('Id not provided');
-        }
-
         const road = await this.findById(id);
 
         if (!road) {
@@ -60,11 +50,8 @@ export class RoadService {
         return this.roadRepository.remove(road);
     }
 
+    @PropNotProvided('Name')
     async removeByName(name: string): Promise<RoadEntity> {
-        if (!name) {
-            throw new NotFoundException('Name not provided');
-          }
-
         const road = await this.findByName(name);
 
         if (!road) {
@@ -83,11 +70,8 @@ export class RoadService {
         );
     }
 
+    @PropNotProvided('Id')
     async updateById(id: number, payload: UpdateRoadDto): Promise<UpdateResult> {
-        if (!id) {
-            throw new NotFoundException('Id not provided');
-        }
-
         const applicant = this.roadRepository.findOneBy({ id })
 
         if (!applicant) {

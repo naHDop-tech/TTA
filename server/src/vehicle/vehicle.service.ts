@@ -6,6 +6,8 @@ import {
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { PropNotProvided } from '@root/decorators/props-not-provided.decorator'
+
 import { VehicleEntity } from '@root/vehicle/vehicle.entity'
 import { CreateVehicleDto } from '@root/vehicle/dtos/create-vehicle.dto'
 
@@ -27,19 +29,13 @@ export class VehicleService {
         return this.vehicleRepository.save(newVehicle)
     }
 
+    @PropNotProvided('Id')
     async findById(id: number): Promise<VehicleEntity> {
-        if (!id) {
-          throw new NotFoundException('Vehicle not found');
-        }
-
         return await this.vehicleRepository.findOne({ where: { id } });
     }
 
+    @PropNotProvided('Number')
     async findByCountryNumber(number: string): Promise<VehicleEntity> {
-        if (!number) {
-          throw new NotFoundException('Vehicle not found');
-        }
-
         return await this.vehicleRepository.findOne({ where: { countryNumber: number } });
     }
 

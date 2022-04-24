@@ -5,6 +5,8 @@ import {
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { PropNotProvided } from '@root/decorators/props-not-provided.decorator'
+
 import { CardEntity } from '@root/card/card.entity'
 import { CreateCardDto } from '@root/card/dtos/create-card.dto'
 import { CardGenerator } from '@root/utils/CardGenerator'
@@ -25,11 +27,8 @@ export class CardService {
         return await this.cardRepository.save({ ...card, bankAccountId })
     }
 
+    @PropNotProvided('BankAccountId')
     async findByBankAccountId(bankAccountId: number): Promise<CardEntity> {
-        if (!bankAccountId) {
-          throw new NotFoundException('Card not found');
-        }
-
         return await this.cardRepository.findOne({ where: { bankAccount: { id: bankAccountId } }, relations: ['bankAccount'] });
     }
 }

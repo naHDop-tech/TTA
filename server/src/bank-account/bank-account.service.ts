@@ -5,6 +5,8 @@ import {
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { PropNotProvided } from '@root/decorators/props-not-provided.decorator'
+
 import { BankAccountEntity } from '@root/bank-account/bank-account.entity'
 
 import { CreateBankAccountDto } from '@root/bank-account/dtos/create-bank-account.dto'
@@ -53,6 +55,7 @@ export class BankAccountService {
         return savedBankAccount
     }
 
+    @PropNotProvided('BankAccountId')
     async addCard(
         bankAccountId: number,
         payload: CreateCardDto
@@ -80,11 +83,8 @@ export class BankAccountService {
         return this.bankAccountRepository.save(bankAccount)
     }
 
+    @PropNotProvided('Id')
     async findById(id: number): Promise<BankAccountEntity> {
-        if (!id) {
-          throw new NotFoundException('Bank account not found');
-        }
-
         return await this.bankAccountRepository.findOne({ where: { id }, relations: ['user', 'cards'] });
     }
 }
