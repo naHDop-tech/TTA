@@ -6,7 +6,7 @@ import {
 } from 'typeorm';
 
 import { ICustomer } from '@root/customer/interfaces/customer.interface'
-import { UserTypes } from '@constants/user.constant'
+import { UserTypes } from '@root/constants/customer.constant'
 import { BankAccountEntity } from '@root/bank-account/bank-account.entity'
 
 @Entity('customers')

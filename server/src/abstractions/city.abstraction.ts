@@ -9,7 +9,7 @@ export class City {
     readonly id: number
     name: string
     population: number
-    branchOffices: BranchOffice
+    branchOffices: BranchOffice[]
 
     @Expose()
     get weather(): Weathers {

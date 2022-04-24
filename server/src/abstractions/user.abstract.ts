@@ -1,4 +1,4 @@
-import { UserTypes } from '@constants/user.constant'
+import { UserTypes } from '@root/constants/customer.constant'
 
 export abstract class User {
     id: number
