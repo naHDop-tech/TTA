@@ -4,7 +4,6 @@ import {
     PrimaryGeneratedColumn,
     ManyToOne,
     OneToMany,
-    JoinColumn,
 } from 'typeorm';
 
 import { IBankAccount } from '@root/bank-account/interfaces/bank-account.interface'
@@ -22,7 +21,7 @@ export class BankAccountEntity implements IBankAccount {
         card => card.bankAccount,
         {
             nullable: true,
-            cascade: ["remove"]
+            cascade: ["remove", "update"]
         }
     )
     cards: Array<CardEntity>

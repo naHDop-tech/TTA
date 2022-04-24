@@ -32,6 +32,10 @@ export class CardEntity implements ICard {
     @Column({ name: 'expire_date' })
     expireDate: Date
 
-    @ManyToOne(() => BankAccountEntity, (account) => account.cards)
+    @ManyToOne(
+        () => BankAccountEntity,
+        (account) => account.cards,
+        { cascade: ["remove", "update"] }
+    )
     bankAccount: BankAccountEntity
 }

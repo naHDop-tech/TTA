@@ -32,7 +32,6 @@ export class CustomerEntity implements ICustomer {
     @OneToMany(
         () => BankAccountEntity,
         (account) => account.customer,
-        { cascade: ["remove"] }
     )
     bankAccounts: Array<BankAccountEntity>
 }
