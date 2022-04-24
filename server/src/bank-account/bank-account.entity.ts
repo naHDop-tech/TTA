@@ -9,10 +9,10 @@ import {
 
 import { IBankAccount } from '@root/bank-account/interfaces/bank-account.interface'
 import { CardEntity } from '@root/card/card.entity'
-import { UserEntity } from '@root/user/user.entity'
+import { CustomerEntity } from '@root/customer/customer.entity'
 import { CurrencyTypes } from '@constants/currency.constant'
 
-@Entity({ name: 'bank_account'})
+@Entity({ name: 'bank_accounts'})
 export class BankAccountEntity implements IBankAccount {
     @PrimaryGeneratedColumn('uuid')
     id: number
@@ -30,6 +30,6 @@ export class BankAccountEntity implements IBankAccount {
     @Column()
     currency: CurrencyTypes;
 
-    @ManyToOne(() => UserEntity, (user) => user.bankAccounts)
-    user: UserEntity
+    @ManyToOne(() => CustomerEntity, (user) => user.bankAccounts)
+    customer: CustomerEntity
 }

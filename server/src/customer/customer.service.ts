@@ -8,16 +8,16 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 import { PropNotProvided } from '@root/decorators/props-not-provided.decorator'
 
-import { UserEntity } from '@root/user/user.entity'
-import { CreateUserDto } from '@root/user/dtos/create-user.dto'
+import { CustomerEntity } from '@root/customer/customer.entity'
+import { CreateCustomerDto } from '@root/customer/dtos/create-customer.dto'
 
 @Injectable()
-export class UserService {
+export class CustomerService {
     constructor(
-        @InjectRepository(UserEntity) private readonly userRepository: Repository<UserEntity>,
+        @InjectRepository(CustomerEntity) private readonly userRepository: Repository<CustomerEntity>,
     ) {}
 
-    async create(user: CreateUserDto): Promise<UserEntity> {
+    async create(user: CreateCustomerDto): Promise<CustomerEntity> {
         const applicant = await this.userRepository.findOne({ where: { email: user.email }})
 
         if (applicant) {
@@ -30,12 +30,12 @@ export class UserService {
     }
 
     @PropNotProvided('Id')
-    async findById(id: number): Promise<UserEntity> {
+    async findById(id: number): Promise<CustomerEntity> {
         return await this.userRepository.findOne({ where: { id } });
     }
 
 
-    async removeById(id: number): Promise<UserEntity> {
+    async removeById(id: number): Promise<CustomerEntity> {
         const user = await this.findById(id);
 
         if (!user) {
@@ -45,7 +45,7 @@ export class UserService {
         return this.userRepository.remove(user);
     }
 
-    async findAll(take: number = 10, skip: number = 0): Promise<UserEntity[]> {
+    async findAll(take: number = 10, skip: number = 0): Promise<CustomerEntity[]> {
         return await this.userRepository.find(
             {
                 take: take,

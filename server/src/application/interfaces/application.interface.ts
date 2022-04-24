@@ -1,9 +1,9 @@
-import { IUser } from '@root/user/interfaces/user.interface'
+import { ICustomer } from '@root/customer/interfaces/customer.interface'
 import { CurrencyTypes } from '@constants/currency.constant'
 import { IBranchOffice } from '@root/branch-office/interfaces/branch-office.interface'
 
 export interface IApplication {
-    user: IUser
+    customer: ICustomer
     description: string
     amount: number
     currency: CurrencyTypes

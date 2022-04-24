@@ -8,8 +8,8 @@ import { VehicleModule } from '@root/vehicle/vehicle.module'
 import { CardEntity } from '@root/card/card.entity'
 import { CardModule } from '@root/card/card.module'
 
-import { UserEntity } from '@root/user/user.entity'
-import { UserModule } from '@root/user/user.module'
+import { CustomerEntity } from '@root/customer/customer.entity'
+import { CustomerModule } from '@root/customer/customer.module'
 
 import { BankAccountEntity } from '@root/bank-account/bank-account.entity'
 import { BankAccountModule } from '@root/bank-account/bank-account.module'
@@ -32,14 +32,14 @@ import { AppService } from './app.service';
         return {
           type: 'sqlite',
           database: config.get<string>('DB_NAME'),
-          entities: [VehicleEntity, CardEntity, UserEntity, BankAccountEntity, RoadEntity],
+          entities: [VehicleEntity, CardEntity, CustomerEntity, BankAccountEntity, RoadEntity],
           synchronize: true,
         };
       },
     }),
     VehicleModule,
     CardModule,
-    UserModule,
+    CustomerModule,
     BankAccountModule,
     RoadModule,
   ],

@@ -5,12 +5,12 @@ import {
     OneToMany
 } from 'typeorm';
 
-import { IUser } from '@root/user/interfaces/user.interface'
+import { ICustomer } from '@root/customer/interfaces/customer.interface'
 import { UserTypes } from '@constants/user.constant'
 import { BankAccountEntity } from '@root/bank-account/bank-account.entity'
 
-@Entity('users')
-export class UserEntity implements IUser {
+@Entity('customers')
+export class CustomerEntity implements ICustomer {
     @PrimaryGeneratedColumn('uuid')
     id: number
 
@@ -31,7 +31,7 @@ export class UserEntity implements IUser {
 
     @OneToMany(
         () => BankAccountEntity,
-        (account) => account.user,
+        (account) => account.customer,
         { cascade: ["remove"] }
     )
     bankAccounts: Array<BankAccountEntity>

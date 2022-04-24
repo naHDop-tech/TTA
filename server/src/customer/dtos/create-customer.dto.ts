@@ -2,7 +2,7 @@ import { IsString, IsNumber, IsEmail } from 'class-validator';
 
 import { UserTypes } from '@constants/user.constant'
 
-export class CreateUserDto {
+export class CreateCustomerDto {
     @IsString()
     firstName: string;
 

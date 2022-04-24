@@ -12,8 +12,8 @@ import { BankAccountEntity } from '@root/bank-account/bank-account.entity'
 import { CreateBankAccountDto } from '@root/bank-account/dtos/create-bank-account.dto'
 import { CreateCardDto } from '@root/card/dtos/create-card.dto'
 import { CardService } from '@root/card/card.service'
-import { UserService } from '@root/user/user.service'
-import { UserEntity } from '@root/user/user.entity'
+import { CustomerService } from '@root/customer/customer.service'
+import { CustomerEntity } from '@root/customer/customer.entity'
 
 
 @Injectable()
@@ -21,7 +21,7 @@ export class BankAccountService {
     constructor(
         @InjectRepository(BankAccountEntity) private readonly bankAccountRepository: Repository<BankAccountEntity>,
         private readonly cardService: CardService,
-        private readonly userService: UserService,
+        private readonly customerService: CustomerService,
     ) {}
 
     async create(
@@ -43,7 +43,7 @@ export class BankAccountService {
         const savedBankAccount = await this.bankAccountRepository.save(account)
 
         // prepare user
-        const user = new UserEntity()
+        const user = new CustomerEntity()
         user.age = userAge
         user.email = userEmail
         user.firstName = userFirstName
@@ -51,7 +51,7 @@ export class BankAccountService {
         user.type = userType
         user.bankAccounts = [savedBankAccount]
 
-        await this.userService.create(user)
+        await this.customerService.create(user)
         return savedBankAccount
     }
 
@@ -70,7 +70,7 @@ export class BankAccountService {
         const card = await this.cardService.create({
             type,
             paymentSystem,
-            cardHolder: `${bankAccount.user.firstName} ${bankAccount.user.secondName}`,
+            cardHolder: `${bankAccount.customer.firstName} ${bankAccount.customer.secondName}`,
             bankAccountId: bankAccount.id,
         })
 
