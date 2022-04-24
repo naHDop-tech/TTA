@@ -28,30 +28,28 @@ export class BankAccountService {
         payload: CreateBankAccountDto
     ): Promise<BankAccountEntity> {
         const {
-            userAge,
-            userEmail,
-            userFirstName,
-            userSecondName,
-            userType,
+            customerAge,
+            customerEmail,
+            customerFirstName,
+            customerSecondName,
+            customerType,
             currency,
         } = payload
-
         const account = this.bankAccountRepository.create({
             currency
         })
 
         const savedBankAccount = await this.bankAccountRepository.save(account)
 
-        // prepare user
-        const user = new CustomerEntity()
-        user.age = userAge
-        user.email = userEmail
-        user.firstName = userFirstName
-        user.secondName = userSecondName
-        user.type = userType
-        user.bankAccounts = [savedBankAccount]
+        const customer = new CustomerEntity()
+        customer.age = customerAge
+        customer.email = customerEmail
+        customer.firstName = customerFirstName
+        customer.secondName = customerSecondName
+        customer.type = customerType
+        customer.bankAccounts = [savedBankAccount]
 
-        await this.customerService.create(user)
+        await this.customerService.create(customer)
         return savedBankAccount
     }
 
@@ -61,7 +59,7 @@ export class BankAccountService {
         payload: CreateCardDto
     ): Promise<BankAccountEntity> {
         const { type, paymentSystem } = payload
-        const bankAccount = await this.bankAccountRepository.findOne({ where: { id: bankAccountId }, relations: ['user']})
+        const bankAccount = await this.bankAccountRepository.findOne({ where: { id: bankAccountId }, relations: ['customer']})
 
         if(!bankAccount) {
             throw new NotFoundException('Bank account not found');
@@ -85,6 +83,6 @@ export class BankAccountService {
 
     @PropNotProvided('Id')
     async findById(id: number): Promise<BankAccountEntity> {
-        return await this.bankAccountRepository.findOne({ where: { id }, relations: ['user', 'cards'] });
+        return await this.bankAccountRepository.findOne({ where: { id }, relations: ['customer', 'cards'] });
     }
 }

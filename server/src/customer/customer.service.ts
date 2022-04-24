@@ -34,7 +34,6 @@ export class CustomerService {
         return await this.userRepository.findOne({ where: { id } });
     }
 
-
     async removeById(id: number): Promise<CustomerEntity> {
         const user = await this.findById(id);
 

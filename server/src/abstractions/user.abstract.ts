@@ -1,4 +1,4 @@
-import { UserTypes } from '@root/constants/customer.constant'
+import { CustomerTypes } from '@root/constants/customer.constant'
 
 export abstract class User {
     id: number
@@ -6,5 +6,5 @@ export abstract class User {
     secondName: string
     age: number
     email: string
-    readonly type: UserTypes
+    readonly type: CustomerTypes
 }

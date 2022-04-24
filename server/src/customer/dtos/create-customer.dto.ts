@@ -1,6 +1,6 @@
 import { IsString, IsNumber, IsEmail } from 'class-validator';
 
-import { UserTypes } from '@root/constants/customer.constant'
+import { CustomerTypes } from '@root/constants/customer.constant'
 
 export class CreateCustomerDto {
     @IsString()
@@ -16,5 +16,5 @@ export class CreateCustomerDto {
     email: string
 
     @IsNumber()
-    type: UserTypes;
+    type: CustomerTypes;
 }

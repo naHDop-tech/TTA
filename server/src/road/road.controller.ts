@@ -26,7 +26,7 @@ export class RoadController {
     }
 
     @Get('/:id')
-    getUserById(@Param('id') id: number) {
+    getRoadById(@Param('id') id: number) {
         return this.roadService.findById(id)
     }
 

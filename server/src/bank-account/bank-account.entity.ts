@@ -21,7 +21,7 @@ export class BankAccountEntity implements IBankAccount {
         card => card.bankAccount,
         {
             nullable: true,
-            cascade: ["remove", "update"]
+            // cascade: ["remove", "update"]
         }
     )
     cards: Array<CardEntity>
@@ -29,6 +29,6 @@ export class BankAccountEntity implements IBankAccount {
     @Column()
     currency: CurrencyTypes;
 
-    @ManyToOne(() => CustomerEntity, (user) => user.bankAccounts)
+    @ManyToOne(() => CustomerEntity, (customer) => customer.bankAccounts)
     customer: CustomerEntity
 }
