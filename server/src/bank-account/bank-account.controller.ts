@@ -24,13 +24,13 @@ export class BankAccountController {
         return this.bankAccountService.create(body)
     }
 
-    @Post('/add-card')
+    @Post('/:id/add-card')
     @UseInterceptors(ClassSerializerInterceptor)
     addCard(
         @Body() body: CreateCardDto,
-        @Query() query: { backAccountId: number }
+        @Param('id') backAccountId: number
     ) {
-        return this.bankAccountService.addCard(query.backAccountId, body)
+        return this.bankAccountService.addCard(backAccountId, body)
     }
 
     @Get('/:id')
