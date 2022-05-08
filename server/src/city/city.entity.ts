@@ -3,7 +3,6 @@ import {
     Column,
     PrimaryGeneratedColumn,
     OneToMany,
-    JoinColumn
 } from 'typeorm';
 import { Expose } from 'class-transformer';
 

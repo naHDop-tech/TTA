@@ -29,6 +29,6 @@ export class CardService {
 
     @PropNotProvided('BankAccountId')
     async findByBankAccountId(bankAccountId: number): Promise<CardEntity> {
-        return await this.cardRepository.findOne({ where: { bankAccount: { id: bankAccountId } }, relations: ['bankAccount'] });
+        return await this.cardRepository.findOne({ where: { bankAccount: { id: bankAccountId } } });
     }
 }

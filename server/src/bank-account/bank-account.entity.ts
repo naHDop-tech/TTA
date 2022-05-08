@@ -19,6 +19,9 @@ export class BankAccountEntity implements IBankAccount {
     @PrimaryGeneratedColumn('uuid')
     id: number
 
+    @Column()
+    currency: CurrencyTypes;
+
     @OneToMany (
         () => CardEntity,
         card => card.bankAccount,
@@ -29,9 +32,6 @@ export class BankAccountEntity implements IBankAccount {
         }
     )
     cards: Array<CardEntity>
-
-    @Column()
-    currency: CurrencyTypes;
 
     @ManyToOne(() => CustomerEntity, (customer) => customer.bankAccounts, { eager: true })
     customer: CustomerEntity

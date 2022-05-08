@@ -35,7 +35,7 @@ export class CardEntity implements ICard {
     @ManyToOne(
         () => BankAccountEntity,
         (account) => account.cards,
-        { cascade: ["remove", "update"] }
+        { cascade: ["remove", "update"], eager: true }
     )
     bankAccount: BankAccountEntity
 }
