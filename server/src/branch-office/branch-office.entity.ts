@@ -28,41 +28,42 @@ export class BranchOfficeEntity implements IBranchOffice {
     @OneToOne(
         () => BankAccountEntity,
         (account) => account.branchOffice,
-        { eager: true }
+        { eager: true, nullable: true }
     )
     bankAccount: BankAccountEntity
 
     @OneToMany(
         () => VehicleEntity,
         (vehicle) => vehicle.branchOffice,
-        { eager: true }
+        { eager: true, nullable: true }
     )
     vehicles: VehicleEntity[]
 
     @OneToMany(
         () => CustomerEntity,
         (client) => client,
-        { eager: true }
+        { eager: true, nullable: true }
     )
     clients: CustomerEntity[]
 
     @OneToMany(
         () => EmployeeEntity,
         (employee) => employee,
-        { eager: true }
+        { eager: true, nullable: true }
     )
     employees: EmployeeEntity[]
 
     @OneToMany(
         () => ApplicationEntity,
         (application) => application.branchOffice,
-        { eager: true }
+        { eager: true, nullable: true }
     )
     applications: ApplicationEntity[]
 
     @ManyToOne(
         () => CityEntity,
         (city) => city.branchOffices,
+        { eager: true }
     )
     city: CityEntity
 }
