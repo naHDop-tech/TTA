@@ -6,6 +6,7 @@ import { IEmployee } from '@root/employee/interfaces/employee.interface'
 import { ICity } from '@root/city/interfaces/city.interface'
 
 export interface IBranchOffice {
+    name: string
     bankAccount: IBankAccount
     vehicles: IVehicle[]
     clients: ICustomer[]
