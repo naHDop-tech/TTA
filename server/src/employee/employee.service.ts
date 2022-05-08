@@ -23,12 +23,12 @@ export class EmployeeService {
             throw new ConflictException('Employee already exist');
         }
 
-        const newVehicle = this.employeeRepository.create(employee);
+        const newEmployee = this.employeeRepository.create(employee);
 
         // TODO: create branch
-        // newVehicle.branchOffice = 
+        // newEmployee.branchOffice = 
 
-        return this.employeeRepository.save(newVehicle)
+        return this.employeeRepository.save(newEmployee)
     }
 
     @PropNotProvided('Id')

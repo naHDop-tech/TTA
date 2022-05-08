@@ -20,6 +20,9 @@ import { RoadModule } from '@root/road/road.module'
 import { EmployeeEntity } from '@root/employee/employee.entity'
 import { EmployeeModule } from '@root/employee/employee.module'
 
+import { ApplicationEntity } from '@root/application/application.entity'
+import { ApplicationModule } from '@root/application/application.module'
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -41,7 +44,8 @@ import { AppService } from './app.service';
             CustomerEntity,
             BankAccountEntity,
             RoadEntity,
-            EmployeeEntity
+            EmployeeEntity,
+            ApplicationEntity
           ],
           synchronize: true,
         };
@@ -53,6 +57,7 @@ import { AppService } from './app.service';
     BankAccountModule,
     RoadModule,
     EmployeeModule,
+    ApplicationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

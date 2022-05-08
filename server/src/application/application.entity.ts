@@ -1,5 +1,3 @@
-
-
 import {
     Entity,
     Column,
@@ -42,5 +40,4 @@ export class ApplicationEntity implements IApplication {
         { eager: true }
     )
     customer: CustomerEntity
-
 }
