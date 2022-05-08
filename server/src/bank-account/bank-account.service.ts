@@ -59,26 +59,26 @@ export class BankAccountService {
         payload: CreateCardDto
     ): Promise<BankAccountEntity> {
         const { type, paymentSystem } = payload
-        const bankAccount = await this.bankAccountRepository.findOne({ where: { id: bankAccountId }, relations: ['customer', 'cards']})
+        const applicant = await this.bankAccountRepository.findOne({ where: { id: bankAccountId }, relations: ['customer', 'cards']})
 
-        if(!bankAccount) {
+        if (!applicant) {
             throw new NotFoundException('Bank account not found');
         }
 
         const card = await this.cardService.create({
             type,
             paymentSystem,
-            cardHolder: `${bankAccount.customer.firstName} ${bankAccount.customer.secondName}`,
-            bankAccountId: bankAccount.id,
+            cardHolder: `${applicant.customer.firstName} ${applicant.customer.secondName}`,
+            bankAccountId: applicant.id,
         })
 
-        if (bankAccount.cards) {
-            bankAccount.cards.push(card)
+        if (applicant.cards) {
+            applicant.cards.push(card)
         } else {
-            bankAccount.cards = [card]
+            applicant.cards = [card]
         }
 
-        return this.bankAccountRepository.save(bankAccount)
+        return this.bankAccountRepository.save(applicant)
     }
 
     @PropNotProvided('Id')

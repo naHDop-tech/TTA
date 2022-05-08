@@ -2,7 +2,6 @@ import { IBankAccount } from '@root/bank-account/interfaces/bank-account.interfa
 import { IVehicle } from '@root/vehicle/interfaces/vehicle.interface'
 import { ICustomer } from '@root/customer/interfaces/customer.interface'
 import { IApplication } from '@root/application/interfaces/application.interface'
-import { IRoad } from '@root/road/interfaces/road.interface'
 import { IEmployee } from '@root/employee/interfaces/employee.interface'
 import { ICity } from '@root/city/interfaces/city.interface'
 
@@ -12,6 +11,5 @@ export interface IBranchOffice {
     clients: ICustomer[]
     employees: IEmployee[]
     applications: IApplication[]
-    roads: IRoad[]
     city: ICity
 }
