@@ -4,16 +4,17 @@ import {
     PrimaryGeneratedColumn,
     OneToOne,
     OneToMany,
+    ManyToOne,
 } from 'typeorm';
 
 import { IBranchOffice } from '@root/branch-office/interfaces/branch-office.interface'
+
 import { BankAccountEntity } from '@root/bank-account/bank-account.entity'
 import { VehicleEntity } from '@root/vehicle/vehicle.entity'
 import { CustomerEntity } from '@root/customer/customer.entity'
 import { EmployeeEntity } from '@root/employee/employee.entity'
-
 import { ApplicationEntity } from '@root/application/application.entity'
-import { ICity } from '@root/city/interfaces/city.interface'
+import { CityEntity } from '@root/city/city.entity'
 
 
 @Entity('branch_offices')
@@ -59,6 +60,9 @@ export class BranchOfficeEntity implements IBranchOffice {
     )
     applications: ApplicationEntity[]
 
-    @Column()
-    city: ICity
+    @ManyToOne(
+        () => CityEntity,
+        (city) => city.branchOffices,
+    )
+    city: CityEntity
 }

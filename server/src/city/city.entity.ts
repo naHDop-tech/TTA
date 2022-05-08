@@ -8,8 +8,10 @@ import {
 import { Expose } from 'class-transformer';
 
 import { ICity } from '@root/city/interfaces/city.interface'
+
 import { Weathers } from '@constants/city.constant'
 import { WeatherGenerator } from '@root/utils/WeatherGenerator'
+
 import { BranchOfficeEntity } from '@root/branch-office/branch-office.entity';
 import { RoadEntity } from '@root/road/road.entity';
 
@@ -27,7 +29,7 @@ export class CityEntity implements ICity {
 
     @OneToMany(
         () => BranchOfficeEntity,
-        (office) => office,
+        (office) => office.city,
         { eager: true }
     )
     branchOffices: BranchOfficeEntity[];
