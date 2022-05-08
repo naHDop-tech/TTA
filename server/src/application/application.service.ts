@@ -22,7 +22,7 @@ export class ApplicationService {
         const newApplication = this.applicationRepository.create(payload);
         const customer = await this.customerService.findById(payload.customerId)
 
-        if(!customer) {
+        if (!customer) {
             throw new NotFoundException('Customer not found');
         }
 
