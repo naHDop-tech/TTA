@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 import { VehicleEntity } from '@root/vehicle/vehicle.entity'
@@ -23,6 +23,9 @@ import { EmployeeModule } from '@root/employee/employee.module'
 import { ApplicationEntity } from '@root/application/application.entity'
 import { ApplicationModule } from '@root/application/application.module'
 
+import { CityEntity } from '@root/city/city.entity'
+import { CityModule } from '@root/city/city.module'
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -45,7 +48,8 @@ import { AppService } from './app.service';
             BankAccountEntity,
             RoadEntity,
             EmployeeEntity,
-            ApplicationEntity
+            ApplicationEntity,
+            CityEntity,
           ],
           synchronize: true,
         };
@@ -58,6 +62,7 @@ import { AppService } from './app.service';
     RoadModule,
     EmployeeModule,
     ApplicationModule,
+    CityModule,
   ],
   controllers: [AppController],
   providers: [AppService],

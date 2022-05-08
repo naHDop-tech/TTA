@@ -17,14 +17,14 @@ export class VehicleService {
         @InjectRepository(VehicleEntity) private readonly vehicleRepository: Repository<VehicleEntity>,
     ) {}
 
-    async create(vehicle: CreateVehicleDto): Promise<VehicleEntity> {
-        const applicant = await this.vehicleRepository.findOne({ where: { countryNumber: vehicle.countryNumber }})
+    async create(payload: CreateVehicleDto): Promise<VehicleEntity> {
+        const applicant = await this.vehicleRepository.findOne({ where: { countryNumber: payload.countryNumber }})
 
-        if (applicant?.countryNumber === vehicle.countryNumber) {
+        if (applicant?.countryNumber === payload.countryNumber) {
             throw new ConflictException('Vehicle already exist');
         }
 
-        const newVehicle = this.vehicleRepository.create(vehicle);
+        const newVehicle = this.vehicleRepository.create(payload);
 
         return this.vehicleRepository.save(newVehicle)
     }
