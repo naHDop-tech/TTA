@@ -55,7 +55,7 @@ export class BranchOfficeEntity implements IBranchOffice {
 
     @OneToMany(
         () => ApplicationEntity,
-        (application) => application.destinationOffice,
+        (application) => application.branchOffice,
         { eager: true }
     )
     applications: ApplicationEntity[]

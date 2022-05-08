@@ -29,6 +29,7 @@ export class ApplicationService {
         newApplication.customer = customer
         // TODO:
         // newApplication.destinationOffice = 
+        // newApplication.branchOffice = 
 
         return this.applicationRepository.save(newApplication)
     }
@@ -52,7 +53,7 @@ export class ApplicationService {
     async findAll(take: number = 10, skip: number = 0, branchOfficeId: number): Promise<ApplicationEntity[]> {
         return await this.applicationRepository.find(
             {
-                where: { destinationOffice: { id: branchOfficeId } },
+                where: { branchOffice: { id: branchOfficeId } },
                 take: take,
                 skip: skip
             },

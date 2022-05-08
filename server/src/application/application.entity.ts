@@ -29,10 +29,17 @@ export class ApplicationEntity implements IApplication {
 
     @ManyToOne(
         () => BranchOfficeEntity,
-        (office) => office.applications,
+        (office) => office,
         { eager: true }
     )
     destinationOffice: BranchOfficeEntity;
+
+    @ManyToOne(
+        () => BranchOfficeEntity,
+        (office) => office.applications,
+        { eager: true }
+    )
+    branchOffice: BranchOfficeEntity;
 
     @ManyToOne(
         () => CustomerEntity,

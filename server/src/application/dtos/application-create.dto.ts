@@ -21,5 +21,8 @@ export class ApplicationCreateDto {
     destinationOfficeId: number
 
     @IsUUID()
+    branchOfficeId: number
+
+    @IsUUID()
     customerId: number
 }

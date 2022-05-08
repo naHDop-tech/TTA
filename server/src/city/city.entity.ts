@@ -29,14 +29,14 @@ export class CityEntity implements ICity {
     @OneToMany(
         () => BranchOfficeEntity,
         (office) => office.city,
-        { eager: true }
+        { eager: true, nullable: true }
     )
     branchOffices: BranchOfficeEntity[];
 
     @OneToMany(
         () => RoadEntity,
         (road) => road,
-        { eager: true }
+        { eager: true, nullable: true }
     )
     roads: RoadEntity[];
 
