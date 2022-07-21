@@ -6,6 +6,8 @@ import {
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
+import { PropNotProvided } from '@root/decorators/props-not-provided.decorator'
+
 import { VehicleEntity } from '@root/vehicle/vehicle.entity'
 import { CreateVehicleDto } from '@root/vehicle/dtos/create-vehicle.dto'
 
@@ -15,31 +17,25 @@ export class VehicleService {
         @InjectRepository(VehicleEntity) private readonly vehicleRepository: Repository<VehicleEntity>,
     ) {}
 
-    async create(vehicle: CreateVehicleDto): Promise<VehicleEntity> {
-        const applicant = await this.vehicleRepository.findOne({ where: { countryNumber: vehicle.countryNumber }})
+    async create(payload: CreateVehicleDto): Promise<VehicleEntity> {
+        const applicant = await this.vehicleRepository.findOne({ where: { countryNumber: payload.countryNumber }})
 
-        if (applicant?.countryNumber === vehicle.countryNumber) {
+        if (applicant?.countryNumber === payload.countryNumber) {
             throw new ConflictException('Vehicle already exist');
         }
 
-        const newVehicle = this.vehicleRepository.create(vehicle);
+        const newVehicle = this.vehicleRepository.create(payload);
 
         return this.vehicleRepository.save(newVehicle)
     }
 
+    @PropNotProvided('Id')
     async findById(id: number): Promise<VehicleEntity> {
-        if (!id) {
-          throw new NotFoundException('Vehicle not found');
-        }
-
         return await this.vehicleRepository.findOne({ where: { id } });
     }
 
+    @PropNotProvided('Number')
     async findByCountryNumber(number: string): Promise<VehicleEntity> {
-        if (!number) {
-          throw new NotFoundException('Vehicle not found');
-        }
-
         return await this.vehicleRepository.findOne({ where: { countryNumber: number } });
     }
 

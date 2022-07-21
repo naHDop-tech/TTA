@@ -1,13 +1,13 @@
-import { Vehicle } from '@root/abstractions/vehicle.abstract'
+import { VehicleEntity } from '@root/vehicle/vehicle.entity'
 
 export class RepairCost {
     private isLessThenThree: boolean;
     private isLessThenSix: boolean;
     private isLessThenTen: boolean;
     private isLessThenTwelve: boolean;
-    private vehicle: Vehicle;
+    private vehicle: VehicleEntity;
 
-    constructor(vehicle: Vehicle) {
+    constructor(vehicle: VehicleEntity) {
         this.vehicle = vehicle
         this.isLessThenThree = new Date().getFullYear() - this.vehicle.year.getFullYear() <= 3
         this.isLessThenSix = new Date().getFullYear() - this.vehicle.year.getFullYear() <= 6

@@ -1,24 +1,24 @@
 import { IsString, IsNumber, IsEmail } from 'class-validator';
 
 import { CurrencyTypes } from '@constants/currency.constant'
-import { UserTypes } from '@constants/user.constant'
+import { CustomerTypes } from '@root/constants/customer.constant'
 
 export class CreateBankAccountDto {
     @IsString()
     currency: CurrencyTypes;
 
     @IsString()
-    userFirstName: string;
+    customerFirstName: string;
 
     @IsString()
-    userSecondName: string;
+    customerSecondName: string;
 
     @IsNumber()
-    userAge: number;
+    customerAge: number;
 
     @IsEmail()
-    userEmail: string
+    customerEmail: string
 
     @IsNumber()
-    userType: UserTypes;
+    customerType: CustomerTypes;
 }

@@ -2,12 +2,14 @@ import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
+    ManyToOne,
 } from 'typeorm';
 
 import { VehicleTypes } from '@root/constants/vehicle.constant'
 import { RepairCost } from '@root/utils/RepairCost'
 import { Expose } from 'class-transformer';
 import { IVehicle } from '@root/vehicle/interfaces/vehicle.interface'
+import { BranchOfficeEntity } from '@root/branch-office/branch-office.entity'
 
 
 @Entity('vehicles')
@@ -44,6 +46,9 @@ export class VehicleEntity implements IVehicle {
 
     @Column({ default: false })
     isChecked: boolean
+
+    @ManyToOne(() => BranchOfficeEntity, (office) => office.vehicles)
+    branchOffice: BranchOfficeEntity
 
     @Expose()
     get isReadyToRace(): boolean {

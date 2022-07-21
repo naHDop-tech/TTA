@@ -30,7 +30,7 @@ export class CardGenerator {
     private readonly unionPayPrefixList = unionPayPrefixList
     private readonly jcbPrefixList = jcbPrefixList
 
-    private readonly ccCardMap = {
+    private readonly cardMap = {
         [VISA]: this.visaPrefixList,
         [MC]: this.mastercardPrefixList,
         [MAESTRO]: this.mastercardPrefixList,
@@ -40,7 +40,7 @@ export class CardGenerator {
         [UNION_PAY]: this.unionPayPrefixList,
     }
 
-    reverseString(str): string {
+    private reverseString(str): string {
         if (!str) return '';
         return str.split("").reverse().join("");
      }
@@ -84,7 +84,7 @@ export class CardGenerator {
         return ccNumber;
     }
 
-    getCreditCardNumber(prefixList): string {
+    private getCardNumber(prefixList): string {
         // const length = Math.floor(Math.random() * (16 - 13 + 1)) + 13;
         const length = 16;
         const randomArrayIndex = Math.floor(Math.random() * prefixList.length);
@@ -93,26 +93,26 @@ export class CardGenerator {
         return this.completedNumber(ccNumber, length)
     }
 
-    getExpireDate(): Date {
+    private getExpireDate(): Date {
         const now = new Date();
         return new Date(now.setDate(now.getDate() + 78 * 14));
     }
 
-    getCvvNumber(): number {
+    private getCvvNumber(): number {
         return Math.floor(Math.random() * (999 - 100 + 1)) + 100;
     }
 
     generateCard(type: CardTypes, paymentSystem: CardPaymentSystems, cardHolder: string): ICard {
-        const number = this.getCreditCardNumber(this.ccCardMap[paymentSystem])
+        const number = this.getCardNumber(this.cardMap[paymentSystem])
         const cvv = this.getCvvNumber()
-        const expDate = this.getExpireDate()
+        const expireDate = this.getExpireDate()
 
         return {
             type,
             paymentSystem,
             number,
             cvv,
-            expireDate: expDate,
+            expireDate,
             cardHolder: cardHolder.toUpperCase()
         }
     }
